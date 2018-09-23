@@ -50,16 +50,22 @@ def softmax_djdy(x,i):
 def forward(embedding_w,preword,linear_w,linear_b,output_embeded_w,output_embeded_b,outputword):
    
     print('-------前向传播-------')
+    #embedding_lookup层
     h1=embedding_lookup(embedding_w,preword)
     print('h1=',h1)
+    #线性变换层
     h2=linear_transform(h1,linear_w,linear_b)
     print('h2=',h2)
+    #激活函数层
     h3=Tanh(h2)
     print('h3=',h3)
+    #output embedding层
     h4=linear_transform(h3,output_embeded_w,output_embeded_b)
     print('h4=',h4)
+    #softmax层
     h5=Softmax(h4)
     print('h5=',h5)
+    #计算损失
     loss=cross_entropy(h5,outputword)
     print('')
     print('Loss=',loss)
@@ -85,7 +91,7 @@ def backword(h5,outputword,output_embeded_w,output_embeded_b,h3,h2,h1,linear_w,l
 
 def weight_updating(eta,embedding_w,djd_input_embedding,linear_w,djd_linear_w,linear_b,djd_linear_b,output_embeded_w,output_embeded_b,djd_output_embeded_w,djd_output_embeded_b):
     #print('------参数更新------')
-    
+    #梯度下降，x=x-eta*gradiant
     embedding_w += -eta * djd_input_embedding
     
     linear_w += -eta * djd_linear_w
@@ -98,6 +104,7 @@ def weight_updating(eta,embedding_w,djd_input_embedding,linear_w,djd_linear_w,li
 
 
 def main():
+    #随机生成初始参数
     preword=0
     outputword=1
     
@@ -108,7 +115,7 @@ def main():
     
     output_embeded_w=np.array([[-1,0.4,-0.3],[1,0.5,0.2]])
     output_embeded_b=np.array([0,0.5,0])
-    
+    #梯度下降速率
     eta=0.1
     
     for i in range(10):
@@ -118,7 +125,7 @@ def main():
         print()
         h1,h2,h3,h4,h5=forward(embedding_w,preword,linear_w,linear_b,output_embeded_w,output_embeded_b,outputword)
         print()
-        label_end=copy.deepcopy(h5)
+        label_end=copy.deepcopy(h5) #把h5的值深复制到label_end中
         djd_output_embeded_w,djd_output_embeded_b,djd_linear_w,djd_linear_b,djd_input_embedding=backword(h5,outputword,output_embeded_w,output_embeded_b,h3,h2,h1,linear_w,linear_b,embedding_w,preword)
         print()
         embedding_w,linear_w,linear_b,output_embeded_w,output_embeded_b=weight_updating(eta,embedding_w,djd_input_embedding,linear_w,djd_linear_w,linear_b,djd_linear_b,output_embeded_w,output_embeded_b,djd_output_embeded_w,djd_output_embeded_b)
