@@ -3,3 +3,5 @@
 需要导入的包：numpy/copy；
 程序原理图如下：
 ![image](https://github.com/JXZe/learn/blob/master/nnlm/%E5%8E%9F%E7%90%86%E5%9B%BE.png)
+
+运行结果如下图：
