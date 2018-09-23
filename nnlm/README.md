@@ -5,3 +5,4 @@
 ![image](https://github.com/JXZe/learn/blob/master/nnlm/%E5%8E%9F%E7%90%86%E5%9B%BE.png)
 
 运行结果如下图：
+![result](https://github.com/JXZe/learn/blob/master/nnlm/result9.png)
