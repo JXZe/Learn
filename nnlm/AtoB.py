@@ -120,7 +120,7 @@ def main():
     
     for i in range(10):
         print("======================")
-        print("      迭代第%d次     " %i)
+        print("      迭代第%d次     " %(i+1))
         print("======================")
         print()
         h1,h2,h3,h4,h5=forward(embedding_w,preword,linear_w,linear_b,output_embeded_w,output_embeded_b,outputword)
