@@ -12,4 +12,4 @@
 第10代的运行结果如下图：
 
 
-![result](https://github.com/JXZe/learn/blob/master/nnlm/result9.png)
+![result10](https://github.com/JXZe/learn/blob/master/nnlm/result10.png)
